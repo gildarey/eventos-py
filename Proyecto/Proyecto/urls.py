@@ -1,4 +1,4 @@
-"""pollada_project URL Configuration
+"""Proyecto URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.1/topics/http/urls/
@@ -15,18 +15,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from apps.principal.views import inicio
-from apps.principal.views import crearEvento
-from django.conf import settings
-from django.conf.urls.static import static
+from aplicaciones.principal.views import inicio
+from aplicaciones.principal.views import getEventos, eventos
+from aplicaciones.principal.views import crearEvento
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', inicio, name = 'index'),
-    path('crear_evento/', crearEvento, name = 'crear_evento'),
-
+    path('', inicio, name= 'index'),
+    path('eventos', eventos, name= 'eventos'),
+    path('getEventos', getEventos, name= 'getEventos'),
+    path('crear-evento', crearEvento, name= 'crear-evento'),
 ]
-
-if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
